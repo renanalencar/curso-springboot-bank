@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -19,9 +20,17 @@ public class Agencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @NotNull
     private int idAgencia;
+
+    @NotNull
     private String nomeAgencia;
+
+    @NotNull
     private String endereco;
+
+    @NotNull
     private String telefone;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idCliente"))
@@ -14,8 +15,14 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idCliente;
+
+    @NotNull
     private String nomeCliente;
+
+    @NotNull
     private String clienteCpf;
+
+    @NotNull
     private String clienteFone;
     
     public Cliente(int idCliente, String nomeCliente, String clienteCpf, String clienteFone) {

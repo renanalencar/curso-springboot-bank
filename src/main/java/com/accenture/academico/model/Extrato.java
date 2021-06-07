@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,8 +23,13 @@ public class Extrato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idExtrato;
+
+    @NotNull
     private Date dataHoraMovimento;
+
+    @NotNull
     private String operacao;
+    
     private double valorOperacao;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
