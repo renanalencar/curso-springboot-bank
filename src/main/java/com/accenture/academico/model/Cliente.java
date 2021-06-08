@@ -1,5 +1,7 @@
 package com.accenture.academico.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,36 +9,41 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idCliente"))
-public class Cliente {
+public class Cliente implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idCliente;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idCliente;
 
     @NotNull
     private String nomeCliente;
 
     @NotNull
+    @Size(max = 14)
     private String clienteCpf;
 
     @NotNull
     private String clienteFone;
-    
-    public Cliente(int idCliente, String nomeCliente, String clienteCpf, String clienteFone) {
+
+    public Cliente() {
+    }
+
+    public Cliente(long idCliente, String nomeCliente, String clienteCpf, String clienteFone) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.clienteCpf = clienteCpf;
         this.clienteFone = clienteFone;
     }
 
-    public int getIdCliente() {
+    public long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(long idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -64,5 +71,4 @@ public class Cliente {
         this.clienteFone = clienteFone;
     }
 
-    
 }

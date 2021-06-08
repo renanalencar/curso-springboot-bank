@@ -1,5 +1,7 @@
 package com.accenture.academico.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,12 +18,11 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idContaCorrente"))
-public class ContaCorrente {
-    
+public class ContaCorrente implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idContaCorrente;
-
+    private long idContaCorrente;
 
     private String contaCorrenteAgencia;
 
@@ -34,21 +35,23 @@ public class ContaCorrente {
     @JoinColumn(name = "idCliente", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente;
-    
-    public ContaCorrente(int idContaCorrente, String contaCorrenteAgencia, int contaCorrenteNumero,
-            double contaCorrenteSaldo, Cliente cliente) {
+
+    public ContaCorrente() {
+    }
+
+    public ContaCorrente(long idContaCorrente, String contaCorrenteAgencia, int contaCorrenteNumero,
+            double contaCorrenteSaldo) {
         this.idContaCorrente = idContaCorrente;
         this.contaCorrenteAgencia = contaCorrenteAgencia;
         this.contaCorrenteNumero = contaCorrenteNumero;
         this.contaCorrenteSaldo = contaCorrenteSaldo;
-        this.cliente = cliente;
     }
 
-    public int getIdContaCorrente() {
+    public long getIdContaCorrente() {
         return idContaCorrente;
     }
 
-    public void setIdContaCorrente(int idContaCorrente) {
+    public void setIdContaCorrente(long idContaCorrente) {
         this.idContaCorrente = idContaCorrente;
     }
 
@@ -84,5 +87,4 @@ public class ContaCorrente {
         this.cliente = cliente;
     }
 
-    
 }

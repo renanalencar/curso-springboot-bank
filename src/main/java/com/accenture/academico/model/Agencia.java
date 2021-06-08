@@ -1,5 +1,7 @@
 package com.accenture.academico.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,13 +18,13 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idAgencia"))
-public class Agencia {
+public class Agencia implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     @NotNull
-    private int idAgencia;
+    private long idAgencia;
 
     @NotNull
     private String nomeAgencia;
@@ -38,19 +40,21 @@ public class Agencia {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente;
     
-    public Agencia(int idAgencia, String nomeAgencia, String endereco, String telefone, Cliente cliente) {
+    public Agencia() {
+    }
+
+    public Agencia(long idAgencia, String nomeAgencia, String endereco, String telefone) {
         this.idAgencia = idAgencia;
         this.nomeAgencia = nomeAgencia;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.cliente = cliente;
     }
 
-    public int getIdAgencia() {
+    public long getIdAgencia() {
         return idAgencia;
     }
 
-    public void setIdAgencia(int idAgencia) {
+    public void setIdAgencia(long idAgencia) {
         this.idAgencia = idAgencia;
     }
 
