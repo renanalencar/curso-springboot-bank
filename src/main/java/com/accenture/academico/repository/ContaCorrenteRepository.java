@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContaCorrenteRepository extends JpaRepository<ContaCorrente, Long> {
 
-    Page<ContaCorrente> findAll(Pageable pageable);
+    // Page<ContaCorrente> findAll(Pageable pageable);
     
 }

@@ -24,31 +24,31 @@ public class ExtratoController {
     @Autowired
     private ExtratoRepository repository;
 
-    @GetMapping("/extratos")
-    public Page<Extrato> getAllContasCorrentes(Pageable pageable) {
-        return repository.findAll(pageable);
-    }
+    // @GetMapping("/extratos")
+    // public Page<Extrato> getAllContasCorrentes(Pageable pageable) {
+    //     return repository.findAll(pageable);
+    // }
 
-    @PostMapping("/extratos")
-    public Extrato createContaCorrente(@Valid @RequestBody Extrato extrato) {
-        return repository.save(extrato);
-    }
+    // @PostMapping("/extratos")
+    // public Extrato createContaCorrente(@Valid @RequestBody Extrato extrato) {
+    //     return repository.save(extrato);
+    // }
 
-    @PutMapping("/extratos/{idExtrato}")
-    public Extrato udapteContaCorrente(@PathVariable Long idExtrato, @Valid @RequestBody Extrato contaRequest) {
-        return repository.findById(idExtrato).map(extrato -> {
-            extrato.setDataHoraMovimento(contaRequest.getDataHoraMovimento());
-            extrato.setOperacao(contaRequest.getOperacao());
-            extrato.setValorOperacao(contaRequest.getValorOperacao());
-            return repository.save(extrato);
-        }).orElseThrow(() -> new ResourceNotFoundException("idExtrato" + idExtrato + "not found"));
-    }
+    // @PutMapping("/extratos/{idExtrato}")
+    // public Extrato udapteContaCorrente(@PathVariable Long idExtrato, @Valid @RequestBody Extrato contaRequest) {
+    //     return repository.findById(idExtrato).map(extrato -> {
+    //         extrato.setDataHoraMovimento(contaRequest.getDataHoraMovimento());
+    //         extrato.setOperacao(contaRequest.getOperacao());
+    //         extrato.setValorOperacao(contaRequest.getValorOperacao());
+    //         return repository.save(extrato);
+    //     }).orElseThrow(() -> new ResourceNotFoundException("idExtrato" + idExtrato + "not found"));
+    // }
 
-    @DeleteMapping("/extratos/{idExtrato}")
-    public ResponseEntity<?> deleteContaCorrente(@PathVariable Long idExtrato) {
-        return repository.findById(idExtrato).map( extrato -> {
-            repository.delete(extrato);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("idExtrato" + idExtrato + "not found"));
-    }
+    // @DeleteMapping("/extratos/{idExtrato}")
+    // public ResponseEntity<?> deleteContaCorrente(@PathVariable Long idExtrato) {
+    //     return repository.findById(idExtrato).map( extrato -> {
+    //         repository.delete(extrato);
+    //         return ResponseEntity.ok().build();
+    //     }).orElseThrow(() -> new ResourceNotFoundException("idExtrato" + idExtrato + "not found"));
+    // }
 }

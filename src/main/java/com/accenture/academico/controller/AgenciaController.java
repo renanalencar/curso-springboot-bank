@@ -24,31 +24,31 @@ public class AgenciaController {
     @Autowired
     private AgenciaRepository agenciaRepository;
 
-    @GetMapping("/agencias")
-    public Page<Agencia> getAllClientes(Pageable pageable) {
-        return agenciaRepository.findAll(pageable);
-    }
+    // @GetMapping("/agencias")
+    // public Page<Agencia> getAllClientes(Pageable pageable) {
+    //     return agenciaRepository.findAll(pageable);
+    // }
 
-    @PostMapping("/agencias")
-    public Agencia createAgencia(@Valid @RequestBody Agencia agencia) {
-        return agenciaRepository.save(agencia);
-    }
+    // @PostMapping("/agencias")
+    // public Agencia createAgencia(@Valid @RequestBody Agencia agencia) {
+    //     return agenciaRepository.save(agencia);
+    // }
 
-    @PutMapping("/agencias/{idAgencia}")
-    public Agencia udapteAgencia(@PathVariable Long idAgencia, @Valid @RequestBody Agencia agenciaRequest) {
-        return agenciaRepository.findById(idAgencia).map(agencia -> {
-            agencia.setNomeAgencia(agenciaRequest.getNomeAgencia());
-            agencia.setEndereco(agenciaRequest.getEndereco());
-            agencia.setTelefone(agenciaRequest.getTelefone());
-            return agenciaRepository.save(agencia);
-        }).orElseThrow(() -> new ResourceNotFoundException("idAgencia" + idAgencia + "not found"));
-    }
+    // @PutMapping("/agencias/{idAgencia}")
+    // public Agencia udapteAgencia(@PathVariable Long idAgencia, @Valid @RequestBody Agencia agenciaRequest) {
+    //     return agenciaRepository.findById(idAgencia).map(agencia -> {
+    //         agencia.setNomeAgencia(agenciaRequest.getNomeAgencia());
+    //         agencia.setEndereco(agenciaRequest.getEndereco());
+    //         agencia.setTelefone(agenciaRequest.getTelefone());
+    //         return agenciaRepository.save(agencia);
+    //     }).orElseThrow(() -> new ResourceNotFoundException("idAgencia" + idAgencia + "not found"));
+    // }
 
-    @DeleteMapping("/agencias/{idAgencia}")
-    public ResponseEntity<?> deleteAgencia(@PathVariable Long idAgencia) {
-        return agenciaRepository.findById(idAgencia).map( agencia -> {
-            agenciaRepository.delete(agencia);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("idAgencia" + idAgencia + "not found"));
-    }
+    // @DeleteMapping("/agencias/{idAgencia}")
+    // public ResponseEntity<?> deleteAgencia(@PathVariable Long idAgencia) {
+    //     return agenciaRepository.findById(idAgencia).map( agencia -> {
+    //         agenciaRepository.delete(agencia);
+    //         return ResponseEntity.ok().build();
+    //     }).orElseThrow(() -> new ResourceNotFoundException("idAgencia" + idAgencia + "not found"));
+    // }
 }

@@ -24,31 +24,31 @@ public class ContaCorrenteController {
     @Autowired
     private ContaCorrenteRepository repository;
 
-    @GetMapping("/contas")
-    public Page<ContaCorrente> getAllContasCorrentes(Pageable pageable) {
-        return repository.findAll(pageable);
-    }
+    // @GetMapping("/contas")
+    // public Page<ContaCorrente> getAllContasCorrentes(Pageable pageable) {
+    //     return repository.findAll(pageable);
+    // }
 
-    @PostMapping("/contas")
-    public ContaCorrente createContaCorrente(@Valid @RequestBody ContaCorrente contaCorrente) {
-        return repository.save(contaCorrente);
-    }
+    // @PostMapping("/contas")
+    // public ContaCorrente createContaCorrente(@Valid @RequestBody ContaCorrente contaCorrente) {
+    //     return repository.save(contaCorrente);
+    // }
 
-    @PutMapping("/contas/{idContaCorrente}")
-    public ContaCorrente udapteContaCorrente(@PathVariable Long idContaCorrente, @Valid @RequestBody ContaCorrente contaRequest) {
-        return repository.findById(idContaCorrente).map(contaCorrente -> {
-            contaCorrente.setContaCorrenteAgencia(contaRequest.getContaCorrenteAgencia());
-            contaCorrente.setContaCorrenteNumero(contaRequest.getContaCorrenteNumero());
-            contaCorrente.setContaCorrenteSaldo(contaRequest.getContaCorrenteSaldo());
-            return repository.save(contaCorrente);
-        }).orElseThrow(() -> new ResourceNotFoundException("idContaCorrente" + idContaCorrente + "not found"));
-    }
+    // @PutMapping("/contas/{idContaCorrente}")
+    // public ContaCorrente udapteContaCorrente(@PathVariable Long idContaCorrente, @Valid @RequestBody ContaCorrente contaRequest) {
+    //     return repository.findById(idContaCorrente).map(contaCorrente -> {
+    //         contaCorrente.setContaCorrenteAgencia(contaRequest.getContaCorrenteAgencia());
+    //         contaCorrente.setContaCorrenteNumero(contaRequest.getContaCorrenteNumero());
+    //         contaCorrente.setContaCorrenteSaldo(contaRequest.getContaCorrenteSaldo());
+    //         return repository.save(contaCorrente);
+    //     }).orElseThrow(() -> new ResourceNotFoundException("idContaCorrente" + idContaCorrente + "not found"));
+    // }
 
-    @DeleteMapping("/contas/{idContaCorrente}")
-    public ResponseEntity<?> deleteContaCorrente(@PathVariable Long idContaCorrente) {
-        return repository.findById(idContaCorrente).map( contaCorrente -> {
-            repository.delete(contaCorrente);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("idContaCorrente" + idContaCorrente + "not found"));
-    }
+    // @DeleteMapping("/contas/{idContaCorrente}")
+    // public ResponseEntity<?> deleteContaCorrente(@PathVariable Long idContaCorrente) {
+    //     return repository.findById(idContaCorrente).map( contaCorrente -> {
+    //         repository.delete(contaCorrente);
+    //         return ResponseEntity.ok().build();
+    //     }).orElseThrow(() -> new ResourceNotFoundException("idContaCorrente" + idContaCorrente + "not found"));
+    // }
 }

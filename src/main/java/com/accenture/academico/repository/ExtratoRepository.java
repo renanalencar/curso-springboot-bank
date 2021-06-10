@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExtratoRepository extends JpaRepository<Extrato, Long> {
 
-    Page<Extrato> findAll(Pageable pageable);
+    // Page<Extrato> findAll(Pageable pageable);
     
 }
