@@ -2,9 +2,13 @@ package com.accenture.academico.repository;
 
 import com.accenture.academico.model.Extrato;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository
-public interface ExtratoRepository extends JpaRepository<Extrato, Integer> {
+public interface ExtratoRepository extends JpaRepository<Extrato, Long> {
+
+    Page<Extrato> findAll(Pageable pageable);
     
 }
