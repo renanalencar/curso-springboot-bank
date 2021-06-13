@@ -39,21 +39,32 @@ public class Extrato implements Serializable {
     @Enumerated(EnumType.STRING)
     private OperacaoEnum operacao;
 
+    @NotNull
     private double valorOperacao;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idContaCorrente", nullable = false)
+    @JoinColumn(name = "id_conta_corrente", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ContaCorrente contaCorrente;
 
     public Extrato() {
     }
 
-    public Extrato(long idExtrato, Date dataHoraMovimento, OperacaoEnum operacao, double valorOperacao) {
+    public Extrato(long idExtrato, Date dataHoraMovimento, OperacaoEnum operacao, double valorOperacao,
+            ContaCorrente contaCorrente) {
         this.idExtrato = idExtrato;
         this.dataHoraMovimento = dataHoraMovimento;
         this.operacao = operacao;
         this.valorOperacao = valorOperacao;
+        this.contaCorrente = contaCorrente;
+    }
+
+    public Extrato(Date dataHoraMovimento, OperacaoEnum operacao, double valorOperacao,
+            ContaCorrente contaCorrente) {
+        this.dataHoraMovimento = dataHoraMovimento;
+        this.operacao = operacao;
+        this.valorOperacao = valorOperacao;
+        this.contaCorrente = contaCorrente;
     }
 
     public long getIdExtrato() {

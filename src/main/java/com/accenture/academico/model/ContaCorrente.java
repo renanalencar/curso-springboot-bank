@@ -21,30 +21,43 @@ import org.hibernate.annotations.OnDeleteAction;
 public class ContaCorrente implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idContaCorrente;
 
-    private String contaCorrenteAgencia;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_agencia", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Agencia contaCorrenteAgencia;
 
     @NotNull
-    private int contaCorrenteNumero;
+    private String contaCorrenteNumero;
 
+    @NotNull
     private double contaCorrenteSaldo;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idCliente", nullable = false)
+    @JoinColumn(name = "id_cliente", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente;
 
     public ContaCorrente() {
     }
 
-    public ContaCorrente(long idContaCorrente, String contaCorrenteAgencia, int contaCorrenteNumero,
-            double contaCorrenteSaldo) {
+    public ContaCorrente(long idContaCorrente, Agencia contaCorrenteAgencia, String contaCorrenteNumero,
+            double contaCorrenteSaldo, Cliente cliente) {
         this.idContaCorrente = idContaCorrente;
         this.contaCorrenteAgencia = contaCorrenteAgencia;
         this.contaCorrenteNumero = contaCorrenteNumero;
         this.contaCorrenteSaldo = contaCorrenteSaldo;
+        this.cliente = cliente;
+    }
+
+    public ContaCorrente(Agencia contaCorrenteAgencia, String contaCorrenteNumero,
+            double contaCorrenteSaldo, Cliente cliente) {
+        this.contaCorrenteAgencia = contaCorrenteAgencia;
+        this.contaCorrenteNumero = contaCorrenteNumero;
+        this.contaCorrenteSaldo = contaCorrenteSaldo;
+        this.cliente = cliente;
     }
 
     public long getIdContaCorrente() {
@@ -55,19 +68,19 @@ public class ContaCorrente implements Serializable {
         this.idContaCorrente = idContaCorrente;
     }
 
-    public String getContaCorrenteAgencia() {
+    public Agencia getContaCorrenteAgencia() {
         return contaCorrenteAgencia;
     }
 
-    public void setContaCorrenteAgencia(String contaCorrenteAgencia) {
+    public void setContaCorrenteAgencia(Agencia contaCorrenteAgencia) {
         this.contaCorrenteAgencia = contaCorrenteAgencia;
     }
 
-    public int getContaCorrenteNumero() {
+    public String getContaCorrenteNumero() {
         return contaCorrenteNumero;
     }
 
-    public void setContaCorrenteNumero(int contaCorrenteNumero) {
+    public void setContaCorrenteNumero(String contaCorrenteNumero) {
         this.contaCorrenteNumero = contaCorrenteNumero;
     }
 

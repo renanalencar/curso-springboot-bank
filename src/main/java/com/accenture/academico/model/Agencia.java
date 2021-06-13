@@ -36,18 +36,26 @@ public class Agencia implements Serializable {
     private String telefone;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idCliente", nullable = false)
+    @JoinColumn(name = "id_cliente", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente;
     
     public Agencia() {
     }
 
-    public Agencia(long idAgencia, String nomeAgencia, String endereco, String telefone) {
+    public Agencia(long idAgencia, String nomeAgencia, String endereco, String telefone, Cliente cliente) {
         this.idAgencia = idAgencia;
         this.nomeAgencia = nomeAgencia;
         this.endereco = endereco;
         this.telefone = telefone;
+        this.cliente = cliente;
+    }
+
+    public Agencia(String nomeAgencia, String endereco, String telefone, Cliente cliente) {
+        this.nomeAgencia = nomeAgencia;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.cliente = cliente;
     }
 
     public long getIdAgencia() {

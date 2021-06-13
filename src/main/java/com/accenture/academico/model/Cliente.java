@@ -32,6 +32,12 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
+    public Cliente(String nomeCliente, String clienteCpf, String clienteFone) {
+        this.nomeCliente = nomeCliente;
+        this.clienteCpf = clienteCpf;
+        this.clienteFone = clienteFone;
+    }
+
     public Cliente(long idCliente, String nomeCliente, String clienteCpf, String clienteFone) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;

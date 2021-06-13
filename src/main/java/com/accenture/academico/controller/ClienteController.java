@@ -18,22 +18,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
-
+    @ApiOperation(value = "Consulta todos os clientes")
     @GetMapping("/clientes")
     public Page<Cliente> getAllClientes(Pageable pageable) {
         return clienteRepository.findAll(pageable);
     }
-
+    @ApiOperation(value = "Salva um novo cliente")
     @PostMapping("/clientes")
     public Cliente createCliente(@Valid @RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
+    @ApiOperation(value = "Atualiza um cliente")
     @PutMapping("/clientes/{idCliente}")
     public Cliente udapteCliente(@PathVariable Long idCliente, @Valid @RequestBody Cliente clienteRequest) {
         return clienteRepository.findById(idCliente).map(cliente -> {
@@ -43,7 +46,7 @@ public class ClienteController {
             return clienteRepository.save(cliente);
         }).orElseThrow(() -> new ResourceNotFoundException("idCliente" + idCliente + "not found"));
     }
-
+    @ApiOperation(value = "Apaga um cliente")
     @DeleteMapping("/clientes/{idCliente}")
     public ResponseEntity<?> deleteCliente(@PathVariable Long idCliente) {
         return clienteRepository.findById(idCliente).map( cliente -> {
